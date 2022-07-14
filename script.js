@@ -1,3 +1,6 @@
+// DOM
+const main = document.querySelector("main");
+
 // Write a constructor for making “Book” objects. Your book objects should have the
 //  book’s title, author, the number of pages, and whether or not you have read the book.
 
@@ -18,22 +21,47 @@ function addBookToLibrary(Book) {
   myLibrary.push(Book);
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "read");
+const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Read");
 const theThousandAutumns = new Book(
   "The Thousand Autumns of Jacob de Zoet",
   "David Mitchell",
   538,
-  "not read yet"
+  "Want to Read"
 );
+const dune = new Book("Dune", "Frank Herbert", 412, "Read");
 
 addBookToLibrary(theHobbit);
 // console.log(myLibrary);
 addBookToLibrary(theThousandAutumns);
 // console.log(myLibrary);
+addBookToLibrary(dune);
 
 function displayLibrary() {
   for (const book of myLibrary) {
-    console.log(book.title);
+    // console.log(book.title);
+    const bookCard = document.createElement("div");
+    bookCard.classList.add("bookCard");
+    const bookTitle = document.createElement("h3");
+    bookTitle.classList.add("bookTitle");
+    bookTitle.textContent = book.title;
+    const bookAuthor = document.createElement("p");
+    bookAuthor.classList.add("bookAuthor");
+    bookAuthor.textContent = book.author;
+    const numPages = document.createElement("p");
+    numPages.classList.add("numPages");
+    numPages.textContent = `${book.numPages} pages`;
+    const readStatus = document.createElement("p");
+    readStatus.classList.add("readStatus");
+    readStatus.textContent = book.readStatus;
+    const bookIcon = document.createElement("i");
+    bookIcon.classList.add("fa-solid");
+    bookIcon.classList.add("fa-book");
+    main.appendChild(bookCard);
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookAuthor);
+    bookCard.append(numPages);
+    bookCard.append(readStatus);
+    bookCard.append(bookIcon);
   }
 }
 
@@ -41,3 +69,4 @@ console.log(displayLibrary());
 // console.log(theHobbit.info());
 // console.log(theThousandAutumns.info());
 // console.log(theHobbit.numPages);
+// console.log(dune.info());
