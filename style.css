@@ -38,6 +38,9 @@ button {
   color: 264653;
 }
 
+.newBookModal {
+  /* TODO */
+}
 main .booksContainer {
   background-color: yellow;
 }

@@ -18,7 +18,38 @@
       <div class="button-banner">
         <button>New Book +</button>
       </div>
-
+      <div id="newBookModal" class="newBookModal">
+        <div class="newBookModalContent">
+          <form action="" id="addBookForm">
+            <p>
+              <label for="newBookTitle">Title</label>
+              <input type="text" name="newBookTitle" id="newBookTitle" />
+            </p>
+            <p>
+              <label for="newBookAuthor">Author</label>
+              <input type="text" name="newBookAuthor" id="newBookAuthor" />
+            </p>
+            <p>
+              <label for="newBookNumPages">Number of Pages</label>
+              <input
+                type="number"
+                name="newBookNumPages"
+                id="newBookNumPages"
+                min="1"
+              />
+            </p>
+            <p>
+              <label for="newBookReadStatus">Read?</label>
+              <input
+                type="checkbox"
+                name="newBookReadStatus"
+                id="newBookReadStatus"
+              />
+            </p>
+            <button id="addBookModalButton" type="submit">Add Book</button>
+          </form>
+        </div>
+      </div>
       <div class="booksContainer">
         <!-- <div class="bookCard">
              <h3 class="bookTitle">Book Title 1</h3>

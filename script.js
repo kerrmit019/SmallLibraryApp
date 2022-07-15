@@ -1,6 +1,6 @@
 // DOM
 const booksContainer = document.querySelector(".booksContainer");
-
+const addBookModalButton = document.querySelector("#addBookModalButton");
 // Write a constructor for making “Book” objects. Your book objects should have the
 //  book’s title, author, the number of pages, and whether or not you have read the book.
 
