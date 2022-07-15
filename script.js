@@ -8,6 +8,7 @@ const newBookTitle = document.querySelector("#newBookTitle");
 const newBookAuthor = document.querySelector("#newBookAuthor");
 const newBookNumPages = document.querySelector("#newBookNumPages");
 const newBookReadStatus = document.querySelector("#newBookReadStatus");
+
 // Write a constructor for making “Book” objects. Your book objects should have the
 //  book’s title, author, the number of pages, and whether or not you have read the book.
 
@@ -23,6 +24,8 @@ addBookForm.addEventListener("submit", function (e) {
   e.preventDefault();
   addBookForm.reset();
 });
+
+// Set up Library  array and Book constructor
 
 let myLibrary = [];
 
@@ -103,5 +106,26 @@ function displayLibrary() {
     bookCard.append(readStatus);
     bookCard.append(bookIcon);
     bookCard.append(deleteBookIcon);
+    // add data-attribute so can delete later
+    bookCard.setAttribute("data-index-number", myLibrary.indexOf(book));
+
+    // set up delete button event listener
+    const deleteBookButton = bookCard.querySelector(".fa-trash-can");
+    // Eventlistener delete book from library button
+    deleteBookButton.addEventListener("click", function (e) {
+      //   console.log(bookCard.dataset["indexNumber"]);
+      removeBookFromLibrary(bookCard.dataset["indexNumber"]);
+    });
   }
+}
+
+function removeBookFromLibrary(bookIndex) {
+  //   console.log({ bookIndex });
+  console.log("Book removed");
+  if (bookIndex > 0) {
+    myLibrary.splice(bookIndex, bookIndex);
+  } else {
+    myLibrary.splice(0, 1);
+  }
+  displayLibrary();
 }
