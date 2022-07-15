@@ -93,11 +93,15 @@ function displayLibrary() {
     const bookIcon = document.createElement("i");
     bookIcon.classList.add("fa-solid");
     bookIcon.classList.add("fa-book");
+    const deleteBookIcon = document.createElement("i");
+    deleteBookIcon.classList.add("fa-solid");
+    deleteBookIcon.classList.add("fa-trash-can");
     booksContainer.appendChild(bookCard);
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
     bookCard.append(numPages);
     bookCard.append(readStatus);
     bookCard.append(bookIcon);
+    bookCard.append(deleteBookIcon);
   }
 }

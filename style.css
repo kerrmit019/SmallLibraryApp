@@ -64,12 +64,19 @@ main .booksContainer {
   grid-column: 1/2;
 }
 
-.bookCard i {
+.bookCard i.fa-book {
   align-self: center;
   justify-self: center;
   grid-row: 1/5;
   grid-column: 2/3;
   font-size: 60px;
+}
+
+.bookCard i.fa-trash-can {
+  text-align-last: right;
+  grid-column: 2/3;
+  font-size: 30px;
+  color: rgba(206, 8, 8, 0.847);
 }
 
 footer {
