@@ -1,8 +1,28 @@
 // DOM
 const booksContainer = document.querySelector(".booksContainer");
 const addBookModalButton = document.querySelector("#addBookModalButton");
+
+// DOM FORM
+const addBookForm = document.querySelector("#addBookForm");
+const newBookTitle = document.querySelector("#newBookTitle");
+const newBookAuthor = document.querySelector("#newBookAuthor");
+const newBookNumPages = document.querySelector("#newBookNumPages");
+const newBookReadStatus = document.querySelector("#newBookReadStatus");
 // Write a constructor for making “Book” objects. Your book objects should have the
 //  book’s title, author, the number of pages, and whether or not you have read the book.
+
+// Eventlistener for form add new book
+addBookForm.addEventListener("submit", function (e) {
+  console.log("Book Added");
+  addNewBook(
+    newBookTitle.value,
+    newBookAuthor.value,
+    newBookNumPages.value,
+    newBookReadStatus.checked ? newBookReadStatus.value : "Want to Read"
+  );
+  e.preventDefault();
+  addBookForm.reset();
+});
 
 let myLibrary = [];
 
@@ -17,6 +37,12 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.readStatus}`;
 };
 
+function addNewBook(title, author, numPages, readStatus) {
+  let newBook = new Book(title, author, numPages, readStatus);
+  addBookToLibrary(newBook);
+  displayLibrary();
+}
+
 function addBookToLibrary(Book) {
   myLibrary.push(Book);
 }
@@ -30,13 +56,24 @@ const theThousandAutumns = new Book(
 );
 const dune = new Book("Dune", "Frank Herbert", 412, "Read");
 
-addBookToLibrary(theHobbit);
+// addBookToLibrary(theHobbit);
 // console.log(myLibrary);
 addBookToLibrary(theThousandAutumns);
 // console.log(myLibrary);
 addBookToLibrary(dune);
 
+// displayLibrary();
+
 function displayLibrary() {
+  //   clear BooksContainer of bookCards if any
+  const bookCards = document.querySelectorAll(".bookCard");
+
+  bookCards.forEach((bookCard) => {
+    booksContainer.removeChild(bookCard);
+  });
+
+  //   display library
+
   for (const book of myLibrary) {
     // console.log(book.title);
     const bookCard = document.createElement("div");
@@ -64,9 +101,3 @@ function displayLibrary() {
     bookCard.append(bookIcon);
   }
 }
-
-console.log(displayLibrary());
-// console.log(theHobbit.info());
-// console.log(theThousandAutumns.info());
-// console.log(theHobbit.numPages);
-// console.log(dune.info());
