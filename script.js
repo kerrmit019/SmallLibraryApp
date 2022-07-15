@@ -1,5 +1,5 @@
 // DOM
-const main = document.querySelector("main");
+const booksContainer = document.querySelector(".booksContainer");
 
 // Write a constructor for making “Book” objects. Your book objects should have the
 //  book’s title, author, the number of pages, and whether or not you have read the book.
@@ -56,7 +56,7 @@ function displayLibrary() {
     const bookIcon = document.createElement("i");
     bookIcon.classList.add("fa-solid");
     bookIcon.classList.add("fa-book");
-    main.appendChild(bookCard);
+    booksContainer.appendChild(bookCard);
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
     bookCard.append(numPages);
