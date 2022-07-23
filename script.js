@@ -1,13 +1,16 @@
 // DOM
 const booksContainer = document.querySelector(".booksContainer");
-const addBookModalButton = document.querySelector("#addBookModalButton");
+const newBookButton = document.querySelector("#newBookButton");
+const newBookModal = document.querySelector("#newBookModal");
 
-// DOM FORM
+// DOM  MODAL FORM
 const addBookForm = document.querySelector("#addBookForm");
 const newBookTitle = document.querySelector("#newBookTitle");
 const newBookAuthor = document.querySelector("#newBookAuthor");
 const newBookNumPages = document.querySelector("#newBookNumPages");
 const newBookReadStatus = document.querySelector("#newBookReadStatus");
+const addBookModalButton = document.querySelector("#addBookModalButton");
+const closeModalButton = document.querySelector(".modalClose");
 
 // Write a constructor for making “Book” objects. Your book objects should have the
 //  book’s title, author, the number of pages, and whether or not you have read the book.
@@ -24,6 +27,24 @@ addBookForm.addEventListener("submit", function (e) {
   e.preventDefault();
   addBookForm.reset();
 });
+
+// open modal on click of button
+newBookButton.addEventListener("click", function () {
+  console.log("Modal");
+  newBookModal.style.display = "block";
+});
+
+// close the modal
+closeModalButton.addEventListener("click", function () {
+  newBookModal.style.display = "none";
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 // Set up Library  array and Book constructor
 
