@@ -16,9 +16,9 @@ const newBookReadStatus = document.querySelector("#newBookReadStatus");
 addBookForm.addEventListener("submit", function (e) {
   console.log("Book Added");
   addNewBook(
-    newBookTitle.value,
-    newBookAuthor.value,
-    newBookNumPages.value,
+    newBookTitle.value !== "" ? newBookTitle.value : "Title Unknown",
+    newBookAuthor.value !== "" ? newBookAuthor.value : "Author Unknown",
+    newBookNumPages.value !== "" ? newBookNumPages.value : "Unknown number of",
     newBookReadStatus.checked ? newBookReadStatus.value : "Want to Read"
   );
   e.preventDefault();
