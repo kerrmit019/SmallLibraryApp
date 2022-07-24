@@ -23,12 +23,17 @@ header {
 
 button {
   font-size: 30px;
-  /* font-weight: bold; */
+  font-weight: 300;
   background-color: #2a9d8f;
   border-radius: 10px;
   border: none;
   padding: 5px 15px;
-  color: 264653;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #264653;
 }
 
 /* The Modal (background) */
@@ -63,7 +68,7 @@ button {
 
 .modalClose:hover,
 .modalClose:focus {
-  color: black;
+  color: #264653;
   text-decoration: none;
   cursor: pointer;
 }
@@ -74,6 +79,19 @@ main {
 }
 main .booksContainer {
   background-color: yellow;
+}
+
+.noBooks {
+  /* display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50px auto auto auto; */
+  background-color: lightblue;
+  padding: 15px;
+  /* align-content: center;s */
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+  margin: 15px;
 }
 
 .bookCard {

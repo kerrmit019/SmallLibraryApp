@@ -2,6 +2,7 @@
 const booksContainer = document.querySelector(".booksContainer");
 const newBookButton = document.querySelector("#newBookButton");
 const newBookModal = document.querySelector("#newBookModal");
+const noBooksPrompt = document.querySelector(".noBooks");
 
 // DOM  MODAL FORM
 const addBookForm = document.querySelector("#addBookForm");
@@ -96,6 +97,12 @@ function displayLibrary() {
     booksContainer.removeChild(bookCard);
   });
 
+  // if library empty then display place holder
+  if (myLibrary.length !== 0) {
+    noBooksPrompt.style.display = "none";
+  } else {
+    noBooksPrompt.style.display = "block";
+  }
   //   display library
 
   for (const book of myLibrary) {
