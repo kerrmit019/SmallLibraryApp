@@ -122,10 +122,15 @@ main .booksContainer {
 }
 
 .bookCard i.fa-trash-can {
-  text-align-last: right;
+  justify-self: end;
   grid-column: 2/3;
   font-size: 30px;
   color: rgba(206, 8, 8, 0.847);
+}
+
+.bookCard i.fa-trash-can:hover {
+  color: #264653;
+  cursor: pointer;
 }
 
 footer {
