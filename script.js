@@ -111,9 +111,9 @@ function displayLibrary() {
     const numPages = document.createElement("p");
     numPages.classList.add("numPages");
     numPages.textContent = `${book.numPages} pages`;
-    const readStatus = document.createElement("p");
-    readStatus.classList.add("readStatus");
-    readStatus.textContent = book.readStatus;
+    const readStatusButton = document.createElement("button");
+    readStatusButton.classList.add("readStatus");
+    readStatusButton.textContent = book.readStatus;
     const bookIcon = document.createElement("i");
     bookIcon.classList.add("fa-solid");
     bookIcon.classList.add("fa-book");
@@ -124,7 +124,7 @@ function displayLibrary() {
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
     bookCard.append(numPages);
-    bookCard.append(readStatus);
+    bookCard.append(readStatusButton);
     bookCard.append(bookIcon);
     bookCard.append(deleteBookIcon);
     // add data-attribute so can delete later
