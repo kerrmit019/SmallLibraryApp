@@ -114,6 +114,9 @@ function displayLibrary() {
     const readStatusButton = document.createElement("button");
     readStatusButton.classList.add("readStatus");
     readStatusButton.textContent = book.readStatus;
+    if (book.readStatus === "Want to Read") {
+      readStatusButton.classList.add("wantToRead");
+    }
     const bookIcon = document.createElement("i");
     bookIcon.classList.add("fa-solid");
     bookIcon.classList.add("fa-book");

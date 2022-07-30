@@ -129,6 +129,11 @@ main .booksContainer {
   padding: 5px 10px;
   grid-row: 2/4;
 }
+
+.wantToRead {
+  background-color: #f4a261;
+}
+
 .bookCard i.fa-book {
   align-self: center;
   justify-self: center;
