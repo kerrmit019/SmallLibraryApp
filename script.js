@@ -16,6 +16,7 @@ const closeModalButton = document.querySelector(".modalClose");
 // Write a constructor for making “Book” objects. Your book objects should have the
 //  book’s title, author, the number of pages, and whether or not you have read the book.
 
+//  EVENT LISTENERS
 // Eventlistener for form add new book
 addBookForm.addEventListener("submit", function (e) {
   console.log("Book Added");
@@ -55,6 +56,14 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.readStatus}`;
 };
 
+Book.prototype.toggleReadStatus = function () {
+  if (this.readStatus === "Read") {
+    return (this.readStatus = "Want to Read");
+  }
+
+  return (this.readStatus = "Read");
+};
+
 function addNewBook(title, author, numPages, readStatus) {
   let newBook = new Book(title, author, numPages, readStatus);
   addBookToLibrary(newBook);
@@ -83,6 +92,8 @@ addBookToLibrary(dune);
 // displayLibrary();
 
 function displayLibrary() {
+  // TODO this function is way too long needs a refactor later
+
   //   clear BooksContainer of bookCards if any
   const bookCards = document.querySelectorAll(".bookCard");
 
@@ -114,9 +125,12 @@ function displayLibrary() {
     const readStatusButton = document.createElement("button");
     readStatusButton.classList.add("readStatus");
     readStatusButton.textContent = book.readStatus;
+
+    // so can assign different colours to buttons read/want to read
     if (book.readStatus === "Want to Read") {
       readStatusButton.classList.add("wantToRead");
     }
+
     const bookIcon = document.createElement("i");
     bookIcon.classList.add("fa-solid");
     bookIcon.classList.add("fa-book");
@@ -128,10 +142,24 @@ function displayLibrary() {
     bookCard.appendChild(bookAuthor);
     bookCard.append(numPages);
     bookCard.append(readStatusButton);
+
     bookCard.append(bookIcon);
     bookCard.append(deleteBookIcon);
-    // add data-attribute so can delete later
+    // add data-attribute so can delete later (Actually didn't use in my solution
+    // but may use in a refactor)
     bookCard.setAttribute("data-index-number", myLibrary.indexOf(book));
+
+    // add toggle readStatus functionality to button
+    // TODO tidy this in refactor
+    const toggleReadStatusButton = bookCard.querySelector(".readStatus");
+    console.log(toggleReadStatusButton);
+    toggleReadStatusButton.addEventListener("click", function (e) {
+      book.toggleReadStatus();
+      console.log(book.readStatus);
+      // upodate button text
+      readStatusButton.textContent = book.readStatus;
+      readStatusButton.classList.toggle("wantToRead");
+    });
 
     // set up delete button event listener
     const deleteBookButton = bookCard.querySelector(".fa-trash-can");
