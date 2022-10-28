@@ -30,6 +30,7 @@ button {
   padding: 5px 15px;
   color: white;
   cursor: pointer;
+  width: 100%;
 }
 
 #newBookButton {
@@ -72,6 +73,8 @@ button:hover {
   border: 1px solid #172121;
   border-radius: 15px;
   color: #172121;
+  min-width: 150px;
+  width: 80vw;
   max-width: 600px;
 }
 
@@ -79,29 +82,38 @@ button:hover {
 
 form h1 {
   text-align: center;
+  margin: 0;
+  padding: 25px 0;
 }
 
 label {
+  /* padding: 0; */
+  /* margin: 0; */
   display: inline-block;
   width: 100px;
-  text-align: right;
-  font-size: 30px;
+  /* text-align: right; */
+  font-size: 2rem;
   font-weight: 400;
-  line-height: 35px;
+  line-height: 1rem;
   font-style: normal;
 }
 
 input[type="text"] {
-  width: 371px;
-  height: 30px;
+  /* width: 371px; */
+  margin-top: 5px;
+  width: 100%;
+  /* height: 30px; */
   background-color: #d5d5d5;
   border: #172121 1px solid;
   border-radius: 4px;
+  min-height: 2em;
 }
 
 input[type="number"] {
-  height: 30px;
-  max-width: 100px;
+  /* height: 30px; */
+  min-height: 2em;
+  margin-top: 5px;
+  width: 100%;
   background-color: #d5d5d5;
   border: #172121 1px solid;
   border-radius: 4px;
@@ -109,15 +121,18 @@ input[type="number"] {
 
 /* CHECKBOXES */
 .toggle {
-  --width: 100px;
-  --height: calc(var(--width) / 3);
+  /* --width: 100px; */
+  --width: 50vw;
+  --height: calc(var(--width) / 6);
 
   position: relative;
   display: inline-block;
   width: var(--width);
   height: var(--height);
+  align-self: center;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .toggle input {
@@ -131,9 +146,10 @@ input[type="number"] {
   width: 100%;
   height: 100%;
   font-size: 12px;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
   transition: all 0.4s ease-in-out;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .toggle .labels::after {
@@ -146,8 +162,9 @@ input[type="number"] {
   left: 0;
   height: 100%;
   width: 100%;
-  color: #4d4d4d;
-  background-color: #f19999;
+  color: #ffffff;
+  font-size: 2em;
+  background-color: #c53136;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   transition: all 0.4s ease-in-out;
 }
@@ -163,7 +180,8 @@ input[type="number"] {
   height: 100%;
   width: 100%;
   color: #ffffff;
-  background-color: #4fe132;
+  font-size: 2em;
+  background-color: #46b373;
   text-align: center;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
   transition: all 0.4s ease-in-out;
