@@ -23,7 +23,7 @@ header {
 
 button {
   font-size: 30px;
-  font-weight: 300;
+  font-weight: bolder;
   background-color: #7e8d85;
   border-radius: 10px;
   border: none;
@@ -64,15 +64,121 @@ button:hover {
 
 /* Modal Content/Box */
 .newBookModalContent {
+  display: flex;
+  justify-content: center;
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  border: 1px solid #172121;
+  border-radius: 15px;
+  color: #172121;
+  max-width: 600px;
+}
+
+/* FORM */
+
+form h1 {
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 35px;
+  font-style: normal;
+}
+
+input[type="text"] {
+  width: 371px;
+  height: 30px;
+  background-color: #d5d5d5;
+  border: #172121 1px solid;
+  border-radius: 4px;
+}
+
+input[type="number"] {
+  height: 30px;
+  max-width: 100px;
+  background-color: #d5d5d5;
+  border: #172121 1px solid;
+  border-radius: 4px;
+}
+
+/* CHECKBOXES */
+.toggle {
+  --width: 80px;
+  --height: calc(var(--width) / 3);
+
+  position: relative;
+  display: inline-block;
+  width: var(--width);
+  height: var(--height);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.toggle input {
+  display: none;
+}
+
+.toggle .labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  font-family: sans-serif;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+.toggle .labels::after {
+  content: attr(data-off);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: #4d4d4d;
+  background-color: #f19999;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease-in-out;
+}
+
+.toggle .labels::before {
+  content: attr(data-on);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: calc(var(--width) * -1);
+  height: 100%;
+  width: 100%;
+  color: #ffffff;
+  background-color: #4fe132;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+  transition: all 0.4s ease-in-out;
+}
+
+.toggle input:checked ~ .labels::after {
+  transform: translateX(var(--width));
+}
+
+.toggle input:checked ~ .labels::before {
+  transform: translateX(var(--width));
 }
 
 .modalClose {
-  color: #172121;
+  color: #9d0208;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -80,7 +186,7 @@ button:hover {
 
 .modalClose:hover,
 .modalClose:focus {
-  color: #264653;
+  color: #283b3b;
   text-decoration: none;
   cursor: pointer;
 }

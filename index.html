@@ -27,8 +27,11 @@
       <div id="newBookModal" class="newBookModal">
         <div class="newBookModalContent">
           <form action="" id="addBookForm">
-            <h2>Book Information</h2>
-            <i class="fa-solid fa-rectangle-xmark modalClose"></i>
+            <h1>
+              Book Information
+              <i class="fa-solid fa-rectangle-xmark modalClose"></i>
+            </h1>
+
             <p>
               <label for="newBookTitle">Title</label>
               <input type="text" name="newBookTitle" id="newBookTitle" />
@@ -38,7 +41,7 @@
               <input type="text" name="newBookAuthor" id="newBookAuthor" />
             </p>
             <p>
-              <label for="newBookNumPages">Number of Pages</label>
+              <label for="newBookNumPages">Pages</label>
               <input
                 type="number"
                 name="newBookNumPages"
@@ -47,13 +50,19 @@
               />
             </p>
             <p>
-              <label for="newBookReadStatus">Read?</label>
-              <input
-                type="checkbox"
-                name="newBookReadStatus"
-                id="newBookReadStatus"
-                value="Read"
-              />
+              <label class="toggle" for="newBookReadStatus">
+                <input
+                  type="checkbox"
+                  name="newBookReadStatus"
+                  id="newBookReadStatus"
+                  value="Read"
+                />
+                <span
+                  class="labels"
+                  data-read="READ"
+                  data-off="NOT READ"
+                ></span>
+              </label>
             </p>
             <button id="addBookModalButton" type="submit">Add Book</button>
           </form>
