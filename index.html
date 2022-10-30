@@ -24,7 +24,6 @@
     </header>
 
     <main>
-      <!-- TODO - FORM CONTROL -->
       <div id="newBookModal" class="newBookModal">
         <div class="newBookModalContent">
           <form action="" id="addBookForm">
@@ -33,10 +32,15 @@
             <h1>Book Information</h1>
 
             <label for="newBookTitle">Title</label>
-            <input type="text" name="newBookTitle" id="newBookTitle" />
+            <input type="text" name="newBookTitle" id="newBookTitle" required />
 
             <label for="newBookAuthor">Author</label>
-            <input type="text" name="newBookAuthor" id="newBookAuthor" />
+            <input
+              type="text"
+              name="newBookAuthor"
+              id="newBookAuthor"
+              required
+            />
 
             <label for="newBookNumPages">Pages</label>
             <input
@@ -73,7 +77,7 @@
              <i class="fa-solid fa-book"></i>
             </div> -->
 
-        <div class="noBooks">Add books to see your library here 📚</div>
+        <div class="noBooks">Your library is empty</div>
       </div>
     </main>
     <footer>Made by SK &copy 2022</footer>

@@ -228,6 +228,7 @@ input[type="number"] {
 main {
   grid-row: 2/3;
   display: grid;
+  background-color: #f0f7f4;
 }
 
 main .booksContainer {
@@ -241,7 +242,8 @@ main .booksContainer {
   /* display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50px auto auto auto; */
-  background-color: lightblue;
+  background-color: #b3bfb8;
+  border-radius: 10px;
   padding: 15px;
   text-align: center;
   font-weight: 600;
@@ -311,6 +313,7 @@ main .booksContainer {
 footer {
   padding: 15px;
   text-align: center;
-  background-color: coral;
+  background-color: #f0f7f4;
+  /* background-color: coral; */
   grid-row: 3/4;
 }
