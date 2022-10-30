@@ -120,12 +120,14 @@ function displayLibrary() {
     // console.log(book.title);
     const bookCard = document.createElement("div");
     bookCard.classList.add("bookCard");
+    const bookDetails = document.createElement("div");
+    bookDetails.classList.add("bookDetails");
     const bookTitle = document.createElement("h3");
     bookTitle.classList.add("bookTitle");
     bookTitle.textContent = book.title;
     const bookAuthor = document.createElement("p");
     bookAuthor.classList.add("bookAuthor");
-    bookAuthor.textContent = book.author;
+    bookAuthor.textContent = `by  ${book.author}`;
     const numPages = document.createElement("p");
     numPages.classList.add("numPages");
     numPages.textContent = `${book.numPages} pages`;
@@ -138,19 +140,20 @@ function displayLibrary() {
       readStatusButton.classList.add("wantToRead");
     }
 
-    const bookIcon = document.createElement("i");
-    bookIcon.classList.add("fa-solid");
-    bookIcon.classList.add("fa-book");
+    // const bookIcon = document.createElement("i");
+    // bookIcon.classList.add("fa-solid");
+    // bookIcon.classList.add("fa-book");
     const deleteBookIcon = document.createElement("i");
     deleteBookIcon.classList.add("fa-solid");
     deleteBookIcon.classList.add("fa-trash-can");
     booksContainer.appendChild(bookCard);
-    bookCard.appendChild(bookTitle);
-    bookCard.appendChild(bookAuthor);
-    bookCard.append(numPages);
+    bookCard.appendChild(bookDetails);
+    bookDetails.appendChild(bookTitle);
+    bookDetails.appendChild(bookAuthor);
+    bookDetails.append(numPages);
     bookCard.append(readStatusButton);
 
-    bookCard.append(bookIcon);
+    // bookCard.append(bookIcon);
     bookCard.append(deleteBookIcon);
     // add data-attribute so can delete later (Actually didn't use in my solution
     // but may use in a refactor)

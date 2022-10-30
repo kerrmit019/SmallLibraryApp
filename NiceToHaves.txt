@@ -1,1 +1,3 @@
 TODO = Pop up banner notifcation when book added
+TODO Lke/dislike button
+TODO Edit book card button
