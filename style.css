@@ -71,7 +71,7 @@ button:hover {
 .newBookModalContent {
   display: flex;
   justify-content: center;
-  background-color: #fefefe;
+  background-color: #f0f7f4;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px 0;
   border: 1px solid #172121;
@@ -232,6 +232,7 @@ input[type="number"] {
 main {
   grid-row: 2/3;
   display: grid;
+  background-color: #f0f7f4;
 }
 
 main .booksContainer {
