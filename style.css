@@ -1,4 +1,14 @@
-/* TODO Add Media queries */
+/* MEDIA QUERIES */
+@media (max-width: 500px) {
+  #booksContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+    grid-row-gap: 10px;
+    scroll-behavior: none;
+    margin: 0 auto;
+  }
+}
 
 body {
   padding: 0;
@@ -73,7 +83,7 @@ button:hover {
   justify-content: center;
   background-color: #f0f7f4;
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px 0;
+  padding: 20px 10px;
   border: 1px solid #172121;
   border-radius: 15px;
   color: #172121;
@@ -137,7 +147,7 @@ input[type="number"] {
 /* CHECKBOXES */
 .toggle {
   /* --width: 100px; */
-  --width: 50vw;
+  --width: 80vw;
   --height: calc(var(--width) / 6);
 
   position: relative;
