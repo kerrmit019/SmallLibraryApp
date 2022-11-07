@@ -95,8 +95,14 @@ const dune = new Book("Dune", "Frank Herbert", 412, "Read");
 addBookToLibrary(theThousandAutumns);
 // console.log(myLibrary);
 addBookToLibrary(dune);
+addBookToLibrary(theHobbit);
 
 // displayLibrary();
+
+// TODO Change displayLibrary() to just display library bookcards not create them
+// TODO refactor aspects of displayLibrary() to create bookcard
+
+// TODO remove deleteBook eventlistener from displayLibrary() and place outside
 
 function displayLibrary() {
   // TODO this function is way too long needs a refactor later
@@ -162,27 +168,28 @@ function displayLibrary() {
     // add toggle readStatus functionality to button
     // TODO tidy this in refactor
     const toggleReadStatusButton = bookCard.querySelector(".readStatus");
-    console.log(toggleReadStatusButton);
+    // console.log(toggleReadStatusButton);
     toggleReadStatusButton.addEventListener("click", function (e) {
       book.toggleReadStatus();
-      console.log(book.readStatus);
+      // console.log(book.readStatus);
       // upodate button text
       readStatusButton.textContent = book.readStatus;
       readStatusButton.classList.toggle("wantToRead");
     });
 
+    // TODO Move this outside of here
     // set up delete button event listener
     const deleteBookButton = bookCard.querySelector(".fa-trash-can");
     // Eventlistener delete book from library button
-    deleteBookButton.addEventListener("click", function (e) {
-      //   console.log(bookCard.dataset["indexNumber"]);
+    deleteBookButton.addEventListener("click", function () {
+      console.log(bookCard.dataset["indexNumber"]);
       removeBookFromLibrary(bookCard.dataset["indexNumber"]);
     });
   }
 }
 
 function removeBookFromLibrary(bookIndex) {
-  //   console.log({ bookIndex });
+  console.log({ bookIndex });
   console.log("Book removed");
   if (bookIndex > 0) {
     myLibrary.splice(bookIndex, bookIndex);
