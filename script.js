@@ -20,19 +20,21 @@ const closeModalButton = document.querySelector(".modalClose");
 // Eventlistener for form add new book
 addBookForm.addEventListener("submit", function (e) {
   console.log("Book Added");
-  addNewBook(
+  addNewBooktoLibrary(
     newBookTitle.value !== "" ? newBookTitle.value : "Title Unknown",
     newBookAuthor.value !== "" ? newBookAuthor.value : "Author Unknown",
     newBookNumPages.value !== "" ? newBookNumPages.value : "Unknown number of",
     newBookReadStatus.checked ? newBookReadStatus.value : "Want to Read"
   );
+  displayLibrary();
+
   e.preventDefault();
   addBookForm.reset();
 });
 
 // open modal on click of button
 newBookButton.addEventListener("click", function () {
-  console.log("Modal");
+  // console.log("Modal");
   newBookModal.style.display = "block";
 });
 
@@ -51,6 +53,7 @@ window.onclick = function (event) {
 // Set up Library  array and Book constructor
 
 let myLibrary = [];
+let bookCardIndex = 0;
 
 function Book(title, author, numPages, readStatus) {
   this.title = title;
@@ -59,9 +62,9 @@ function Book(title, author, numPages, readStatus) {
   this.readStatus = readStatus;
 }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.readStatus}`;
-};
+// Book.prototype.info = function () {
+//   return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.readStatus}`;
+// };
 
 Book.prototype.toggleReadStatus = function () {
   if (this.readStatus === "Read") {
@@ -71,42 +74,84 @@ Book.prototype.toggleReadStatus = function () {
   return (this.readStatus = "Read");
 };
 
-function addNewBook(title, author, numPages, readStatus) {
+function addNewBooktoLibrary(title, author, numPages, readStatus) {
   let newBook = new Book(title, author, numPages, readStatus);
-  addBookToLibrary(newBook);
-  displayLibrary();
+  myLibrary.push(createBookCard(newBook));
 }
 
-function addBookToLibrary(Book) {
-  myLibrary.push(Book);
+function createBookCard(book) {
+  const bookCard = document.createElement("div");
+  bookCard.classList.add("bookCard");
+  const bookDetails = document.createElement("div");
+  bookDetails.classList.add("bookDetails");
+  const bookTitle = document.createElement("h3");
+  bookTitle.classList.add("bookTitle");
+  bookTitle.textContent = book.title;
+  const bookAuthor = document.createElement("p");
+  bookAuthor.classList.add("bookAuthor");
+  bookAuthor.textContent = `by  ${book.author}`;
+  const numPages = document.createElement("p");
+  numPages.classList.add("numPages");
+  numPages.textContent = `${book.numPages} pages`;
+  const readStatusButton = document.createElement("button");
+  readStatusButton.classList.add("readStatus");
+  readStatusButton.textContent = book.readStatus;
+
+  // so can assign different colours to buttons read/want to read
+  if (book.readStatus === "Want to Read") {
+    readStatusButton.classList.add("wantToRead");
+  }
+
+  // const bookIcon = document.createElement("i");
+  // bookIcon.classList.add("fa-solid");
+  // bookIcon.classList.add("fa-book");
+  const deleteBookIcon = document.createElement("i");
+  deleteBookIcon.classList.add("fa-solid");
+  deleteBookIcon.classList.add("fa-trash-can");
+  // booksContainer.appendChild(bookCard);
+  bookCard.appendChild(bookDetails);
+  bookDetails.appendChild(bookTitle);
+  bookDetails.appendChild(bookAuthor);
+  bookDetails.append(numPages);
+  bookCard.append(readStatusButton);
+
+  // bookCard.append(bookIcon);
+  bookCard.append(deleteBookIcon);
+  bookCard.setAttribute("data-index-number", bookCardIndex);
+  bookCardIndex++;
+
+  // add toggle readStatus functionality to button
+  const toggleReadStatusButton = bookCard.querySelector(".readStatus");
+  // console.log(toggleReadStatusButton);
+  toggleReadStatusButton.addEventListener("click", function (e) {
+    book.toggleReadStatus();
+    // console.log(book.readStatus);
+    // upodate button text
+    readStatusButton.textContent = book.readStatus;
+    readStatusButton.classList.toggle("wantToRead");
+  });
+
+  // set up delete button event listener
+  const deleteBookButton = bookCard.querySelector(".fa-trash-can");
+  // Eventlistener delete book from library button
+  deleteBookButton.addEventListener("click", function () {
+    console.log(bookCard.dataset["indexNumber"]);
+    removeBookFromLibrary(bookCard.dataset["indexNumber"]);
+  });
+
+  return bookCard;
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Read");
-const theThousandAutumns = new Book(
-  "The Thousand Autumns of Jacob de Zoet",
-  "David Mitchell",
-  538,
-  "Want to Read"
-);
-const dune = new Book("Dune", "Frank Herbert", 412, "Read");
-
-// addBookToLibrary(theHobbit);
-// console.log(myLibrary);
-addBookToLibrary(theThousandAutumns);
-// console.log(myLibrary);
-addBookToLibrary(dune);
-addBookToLibrary(theHobbit);
-
-// displayLibrary();
-
-// TODO Change displayLibrary() to just display library bookcards not create them
-// TODO refactor aspects of displayLibrary() to create bookcard
-
-// TODO remove deleteBook eventlistener from displayLibrary() and place outside
+// addNewBooktoLibrary("The Hobbit", "J.R.R. Tolkien", 295, "Read");
+// addNewBooktoLibrary(
+//   "The Thousand Autumns of Jacob de Zoet",
+//   "David Mitchell",
+//   538,
+//   "Want to Read"
+// );
+// addNewBooktoLibrary("Dune", "Frank Herbert", 412, "Read");
 
 function displayLibrary() {
-  // TODO this function is way too long needs a refactor later
-
   //   clear BooksContainer of bookCards if any
   const bookCards = document.querySelectorAll(".bookCard");
 
@@ -121,80 +166,26 @@ function displayLibrary() {
     noBooksPrompt.style.display = "block";
   }
   //   display library
+  // console.log(myLibrary);
 
   for (const book of myLibrary) {
-    // console.log(book.title);
-    const bookCard = document.createElement("div");
-    bookCard.classList.add("bookCard");
-    const bookDetails = document.createElement("div");
-    bookDetails.classList.add("bookDetails");
-    const bookTitle = document.createElement("h3");
-    bookTitle.classList.add("bookTitle");
-    bookTitle.textContent = book.title;
-    const bookAuthor = document.createElement("p");
-    bookAuthor.classList.add("bookAuthor");
-    bookAuthor.textContent = `by  ${book.author}`;
-    const numPages = document.createElement("p");
-    numPages.classList.add("numPages");
-    numPages.textContent = `${book.numPages} pages`;
-    const readStatusButton = document.createElement("button");
-    readStatusButton.classList.add("readStatus");
-    readStatusButton.textContent = book.readStatus;
-
-    // so can assign different colours to buttons read/want to read
-    if (book.readStatus === "Want to Read") {
-      readStatusButton.classList.add("wantToRead");
-    }
-
-    // const bookIcon = document.createElement("i");
-    // bookIcon.classList.add("fa-solid");
-    // bookIcon.classList.add("fa-book");
-    const deleteBookIcon = document.createElement("i");
-    deleteBookIcon.classList.add("fa-solid");
-    deleteBookIcon.classList.add("fa-trash-can");
-    booksContainer.appendChild(bookCard);
-    bookCard.appendChild(bookDetails);
-    bookDetails.appendChild(bookTitle);
-    bookDetails.appendChild(bookAuthor);
-    bookDetails.append(numPages);
-    bookCard.append(readStatusButton);
-
-    // bookCard.append(bookIcon);
-    bookCard.append(deleteBookIcon);
-    // add data-attribute so can delete later (Actually didn't use in my solution
-    // but may use in a refactor)
-    bookCard.setAttribute("data-index-number", myLibrary.indexOf(book));
-
-    // add toggle readStatus functionality to button
-    // TODO tidy this in refactor
-    const toggleReadStatusButton = bookCard.querySelector(".readStatus");
-    // console.log(toggleReadStatusButton);
-    toggleReadStatusButton.addEventListener("click", function (e) {
-      book.toggleReadStatus();
-      // console.log(book.readStatus);
-      // upodate button text
-      readStatusButton.textContent = book.readStatus;
-      readStatusButton.classList.toggle("wantToRead");
-    });
-
-    // TODO Move this outside of here
-    // set up delete button event listener
-    const deleteBookButton = bookCard.querySelector(".fa-trash-can");
-    // Eventlistener delete book from library button
-    deleteBookButton.addEventListener("click", function () {
-      console.log(bookCard.dataset["indexNumber"]);
-      removeBookFromLibrary(bookCard.dataset["indexNumber"]);
-    });
+    booksContainer.append(book);
   }
 }
 
 function removeBookFromLibrary(bookIndex) {
   console.log({ bookIndex });
   console.log("Book removed");
-  if (bookIndex > 0) {
-    myLibrary.splice(bookIndex, bookIndex);
+  // const searchIndex = carList.findIndex((car) => car.model=="X5");
+  const bookToDeleteIndex = myLibrary.findIndex(
+    (book) => book.dataset.indexNumber === bookIndex
+  );
+
+  if (bookToDeleteIndex > 0) {
+    myLibrary.splice(bookToDeleteIndex, bookToDeleteIndex);
   } else {
     myLibrary.splice(0, 1);
   }
+
   displayLibrary();
 }
