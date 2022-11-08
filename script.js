@@ -13,9 +13,6 @@ const newBookReadStatus = document.querySelector("#newBookReadStatus");
 const addBookModalButton = document.querySelector("#addBookModalButton");
 const closeModalButton = document.querySelector(".modalClose");
 
-// Write a constructor for making “Book” objects. Your book objects should have the
-//  book’s title, author, the number of pages, and whether or not you have read the book.
-
 //  EVENT LISTENERS
 // Eventlistener for form add new book
 addBookForm.addEventListener("submit", function (e) {
@@ -32,6 +29,7 @@ addBookForm.addEventListener("submit", function (e) {
   addBookForm.reset();
 });
 
+// ADD BOOK MODAL
 // open modal on click of button
 newBookButton.addEventListener("click", function () {
   // console.log("Modal");
@@ -62,10 +60,6 @@ function Book(title, author, numPages, readStatus) {
   this.readStatus = readStatus;
 }
 
-// Book.prototype.info = function () {
-//   return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.readStatus}`;
-// };
-
 Book.prototype.toggleReadStatus = function () {
   if (this.readStatus === "Read") {
     return (this.readStatus = "Want to Read");
@@ -74,6 +68,7 @@ Book.prototype.toggleReadStatus = function () {
   return (this.readStatus = "Read");
 };
 
+// FUNCTIONS
 function addNewBooktoLibrary(title, author, numPages, readStatus) {
   let newBook = new Book(title, author, numPages, readStatus);
   myLibrary.push(createBookCard(newBook));
@@ -102,30 +97,23 @@ function createBookCard(book) {
     readStatusButton.classList.add("wantToRead");
   }
 
-  // const bookIcon = document.createElement("i");
-  // bookIcon.classList.add("fa-solid");
-  // bookIcon.classList.add("fa-book");
   const deleteBookIcon = document.createElement("i");
   deleteBookIcon.classList.add("fa-solid");
   deleteBookIcon.classList.add("fa-trash-can");
-  // booksContainer.appendChild(bookCard);
   bookCard.appendChild(bookDetails);
   bookDetails.appendChild(bookTitle);
   bookDetails.appendChild(bookAuthor);
   bookDetails.append(numPages);
   bookCard.append(readStatusButton);
 
-  // bookCard.append(bookIcon);
   bookCard.append(deleteBookIcon);
   bookCard.setAttribute("data-index-number", bookCardIndex);
   bookCardIndex++;
 
   // add toggle readStatus functionality to button
   const toggleReadStatusButton = bookCard.querySelector(".readStatus");
-  // console.log(toggleReadStatusButton);
   toggleReadStatusButton.addEventListener("click", function (e) {
     book.toggleReadStatus();
-    // console.log(book.readStatus);
     // upodate button text
     readStatusButton.textContent = book.readStatus;
     readStatusButton.classList.toggle("wantToRead");
@@ -133,7 +121,7 @@ function createBookCard(book) {
 
   // set up delete button event listener
   const deleteBookButton = bookCard.querySelector(".fa-trash-can");
-  // Eventlistener delete book from library button
+  // Add Eventlistener to delete book from library button
   deleteBookButton.addEventListener("click", function () {
     console.log(bookCard.dataset["indexNumber"]);
     removeBookFromLibrary(bookCard.dataset["indexNumber"]);
@@ -141,15 +129,6 @@ function createBookCard(book) {
 
   return bookCard;
 }
-
-// addNewBooktoLibrary("The Hobbit", "J.R.R. Tolkien", 295, "Read");
-// addNewBooktoLibrary(
-//   "The Thousand Autumns of Jacob de Zoet",
-//   "David Mitchell",
-//   538,
-//   "Want to Read"
-// );
-// addNewBooktoLibrary("Dune", "Frank Herbert", 412, "Read");
 
 function displayLibrary() {
   //   clear BooksContainer of bookCards if any
@@ -166,7 +145,6 @@ function displayLibrary() {
     noBooksPrompt.style.display = "block";
   }
   //   display library
-  // console.log(myLibrary);
 
   for (const book of myLibrary) {
     booksContainer.append(book);
@@ -176,7 +154,6 @@ function displayLibrary() {
 function removeBookFromLibrary(bookIndex) {
   console.log({ bookIndex });
   console.log("Book removed");
-  // const searchIndex = carList.findIndex((car) => car.model=="X5");
   const bookToDeleteIndex = myLibrary.findIndex(
     (book) => book.dataset.indexNumber === bookIndex
   );
